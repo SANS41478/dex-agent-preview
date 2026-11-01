@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import HeroDiagram from '../components/HeroDiagram.astro'
+import ArchDiagram from '../components/ArchDiagram.astro'
+import CtaBand from '../components/CtaBand.astro'
+---
+
+<BaseLayout
+  title="Dex AGENT — 拆开 Agent"
+  description="拆开 Agent。Dex AGENT 把插件树、执行流与时间线摊开在同一张桌面上。"
+  current="/"
+  schema
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="topline"><span class="eyebrow">DEX AGENT / FIELD MANUAL / 001</span><span class="eyebrow">OPEN THE LOOP</span></div>
+      <h1><span>拆开</span><span>Agent。</span></h1>
+      <p class="lede">看清它由什么构成，而不是只看它回答。Dex AGENT 把插件树、执行流与时间线摊开在同一张桌面上。</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/download/">下载 Dex AGENT</a>
+        <a class="text-link" href="#fig-01">阅读图注</a>
+      </div>
+      <div class="hero-foot">
+        <p>SPECIMEN 2026 / v0.2<br />WINDOWS · MACOS · LINUX<br />INDEPENDENT PRODUCT</p>
+        <div class="stamp">OPEN<br />THE<br />LOOP</div>
+      </div>
+    </div>
+    <div class="hero-fig"><HeroDiagram /></div>
+  </section>
+
+  <div class="container">
+    <div class="spec-strip">
+      <div><b>500</b><span>节点基准 / NODES</span></div>
+      <div><b>3</b><span>视角 / GRAPH · DAG · TIME</span></div>
+      <div><b>1</b><span>运行时 / CORDIS</span></div>
+      <div><b>LOCAL</b><span>优先 / 工作区留在本机</span></div>
+    </div>
+  </div>
+
+  <section class="chapter" id="fig-01">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">FIG. 01</div><h2>结构不是列表，是空间。</h2><p class="note">3D 图谱 / 500 节点 / 类型与状态三重编码</p></div>
+      <div class="chapter-body">
+        <div class="chapter-text">
+          <p class="lead">插件不是列表里的一行。它占一个位置，连着几条边，带着自己的状态。图谱让“它由什么构成”变成可以走进去的空间。</p>
+          <ul class="notes">
+            <li><span class="k">NODE</span><span class="v"><b>插件即节点。</b>模型适配器、工具、Skill、调度器、沙箱。</span></li>
+            <li><span class="k">EDGE</span><span class="v"><b>关系即边。</b>inject 依赖与运行时调用。</span></li>
+            <li><span class="k">STATE</span><span class="v"><b>状态是三重编码。</b>颜色、光环、标签文字。</span></li>
+          </ul>
+          <p class="margin-note">图注：节点颜色 = 插件类型；光环 = 状态；边宽 = 调用频率。布局稳定，聚焦子图而不是重新排列。</p>
+        </div>
+        <div class="chapter-figure">
+          <figure class="plate cover">
+            <div class="plate-bar"><span>PLATE 01 / GRAPH</span><span class="live"><i></i>OBSERVED</span></div>
+            <img src="/images/screens/graph-dark.png" width="480" height="430" loading="lazy" alt="3D 插件图谱：彩色节点表示插件类型与状态，细线表示依赖。" />
+            <figcaption><b>fig. 01</b> — 3D plugin graph / 500 nodes / threefold state encoding</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="fig-02">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">FIG. 02</div><h2>过程不是日志，是因果。</h2><p class="note">DAG / Step / Tool Call / 失败向上传播</p></div>
+      <div class="chapter-body reverse">
+        <div class="chapter-text">
+          <p class="lead">Step 是节点，Tool Call 是节点里的证据。失败不是一行红字，而是一条向上传播的路径。点一下失败节点，右侧详情面板给出原因、堆栈、推理文本与工具返回。</p>
+          <ul class="notes">
+            <li><span class="k">STEP</span><span class="v"><b>默认紧凑。</b>序号、状态、一行推理摘要。</span></li>
+            <li><span class="k">TOOL</span><span class="v"><b>工具调用是证据。</b>工具名、入参、返回、耗时。</span></li>
+            <li><span class="k">FAIL</span><span class="v"><b>失败有方向。</b>变红，并向上传播到 Turn。</span></li>
+          </ul>
+          <p class="margin-note">交互：点击 Step 展开 Tool Call chip；再次点击收起。失败节点展开详情面板。</p>
+        </div>
+        <div class="chapter-figure">
+          <div class="dag-paper">
+            <div class="dag-top"><span><b>TURN 01</b> · 检查构建脚本并给出修改建议</span><span>1 FAILED</span></div>
+            <div class="dag-steps">
+              <div class="step"><div class="idx"><span>STEP 01</span><i></i></div><b>读取构建配置</b><p>read package.json</p></div>
+              <div class="step run"><div class="idx"><span>STEP 02</span><i></i></div><b>定位构建脚本</b><p>grep electron.vite</p></div>
+              <div class="step"><div class="idx"><span>STEP 03</span><i></i></div><b>修改配置</b><p>edit defineConfig</p></div>
+              <div class="step fail"><div class="idx"><span>STEP 04</span><i></i></div><b>运行检查失败</b><p>test · exit 1</p></div>
+              <div class="dag-tools"><span class="tool"><i></i>read · 118ms</span><span class="tool"><i></i>grep · 42ms</span><span class="tool"><i></i>edit · 26ms</span><span class="tool" style="border-color:#C92F33"><i style="background:#C92F33"></i>test · failed</span></div>
+            </div>
+            <div class="dag-foot"><span>STRUCTURE DIAGRAM / NOT LIVE DATA</span><span>LAYOUT · ELKJS</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="fig-03">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">FIG. 03</div><h2>时间不是线性的，是可回退的。</h2><p class="note">时间线 / 回放 / 上下文还原</p></div>
+      <div class="chapter-body">
+        <div class="chapter-text">
+          <p class="lead">缓存历史事件，回退到任意 Step 查看当时上下文；支持回放。失败不是终点，是一个可以重新进入的位置。</p>
+          <ul class="notes">
+            <li><span class="k">REWIND</span><span class="v"><b>回到任意 Step。</b>上下文、工具返回、推理文本都还原。</span></li>
+            <li><span class="k">REPLAY</span><span class="v"><b>重新走一遍。</b>时间线与 DAG 共用同一套事件。</span></li>
+          </ul>
+          <p class="margin-note">回放不是录屏：它重建的是状态，不是像素。</p>
+        </div>
+        <div class="chapter-figure">
+          <div class="time-paper">
+            <div class="time-top"><span>RUN 01 / 00:00 — 01:02</span><button class="play-btn" type="button" id="play-timeline">▶ 回放</button></div>
+            <div class="time-track" id="timeline">
+              <div class="base"></div><div class="fill"></div><div class="head"></div>
+              <div class="time-mark" style="left:0%"><b>00:00</b><span>prompt</span></div>
+              <div class="time-mark" style="left:20%"><b>00:12</b><span>step 01</span></div>
+              <div class="time-mark" style="left:40%"><b>00:31</b><span>tool</span></div>
+              <div class="time-mark" style="left:60%"><b>00:48</b><span>failed</span></div>
+              <div class="time-mark" style="left:80%"><b>00:57</b><span>rewind</span></div>
+              <div class="time-mark" style="left:100%"><b>01:02</b><span>done</span></div>
+            </div>
+            <div class="time-foot"><span>playhead <b id="time-read">00:00</b></span><span>events 42</span><span>steps 09</span></div>
+          </div>
+          <figure class="plate cover" style="margin-top:18px">
+            <div class="plate-bar"><span>PLATE 03 / TIMELINE</span><span>REAL UI</span></div>
+            <img src="/images/screens/timeline-dark.png" width="480" height="800" loading="lazy" alt="时间线与 3D 图谱联动：选中 Step，右侧显示对应插件。" style="max-height:420px;object-fit:cover;object-position:top" />
+            <figcaption><b>fig. 03</b> — timeline / selected step linked to graph node</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="fig-04">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">FIG. 04</div><h2>看得见，也改得动。</h2><p class="note">Cordis 插件运行时 / 桥接层 / 热插拔</p></div>
+      <div class="chapter-body wide-figure">
+        <div class="chapter-text">
+          <p class="lead">插件热插拔、模型适配器切换、桥接层扩展。观测不是只读的仪表盘，而是你调整 Agent 的入口。</p>
+          <ul class="notes">
+            <li><span class="k">PLUGIN</span><span class="v"><b>能力以插件挂载。</b>挂上、卸下、重组。</span></li>
+            <li><span class="k">BRIDGE</span><span class="v"><b>桥接只做映射。</b>不修改运行时核心。</span></li>
+            <li><span class="k">MODEL</span><span class="v"><b>模型适配器热插拔。</b>包含 OpenAI 兼容端点。</span></li>
+          </ul>
+          <p class="margin-note">扩展以插件形式挂载；前端通过注册机制暴露新的可视化类型。</p>
+        </div>
+        <div class="chapter-figure"><ArchDiagram /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="notes">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">FIELD NOTES</div><h2>四条原则</h2><p class="note">来自设计系统 / 任何视觉决策都要能解释语义</p></div>
+      <div class="notes-grid">
+        <div class="note-item"><span class="n">01</span><div><h3>视觉即解释</h3><p>每个视觉编码对应一个可解释的语义；没有“为了好看”的第三种蓝。</p></div></div>
+        <div class="note-item"><span class="n">02</span><div><h3>动效承载信息</h3><p>动效表达状态变化，不是循环播放的装饰。脉冲只用于“仍在运行”。</p></div></div>
+        <div class="note-item"><span class="n">03</span><div><h3>空间记忆优于面板切换</h3><p>布局稳定，聚焦子图，不重新排列世界。你调过的宽度会被记住。</p></div></div>
+        <div class="note-item"><span class="n">04</span><div><h3>性能即体验</h3><p>50fps 是及格线。宁可少一层阴影，也不接受掉帧。</p></div></div>
+      </div>
+      <p class="principle-quote">任何视觉决策如果无法用一句话解释它的语义，<br />就不该出现在界面上。</p>
+    </div>
+  </section>
+
+  <CtaBand secondaryHref="/observe/" secondaryLabel="看它如何工作" />
+</BaseLayout>

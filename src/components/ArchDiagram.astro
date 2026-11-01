@@ -1,0 +1,28 @@
+---
+---
+
+<div class="arch-paper">
+            <svg viewBox="0 0 1100 360" role="img" aria-label="架构图：Cordis 插件运行时通过桥接层映射为增量事件，经 WebSocket 推送到 Electron 与 React 观测层。">
+              <defs><pattern id="arch-grid2" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#E4E4E4" stroke-width="1"/></pattern></defs>
+              <rect width="1100" height="360" fill="url(#arch-grid2)" opacity=".6"/>
+              <rect x="24" y="40" width="290" height="116" class="node"/>
+              <text x="42" y="66" class="t">Cordis 插件运行时</text><text x="42" y="84" class="s">插件树 / 生命周期 / 事件</text>
+              <g><circle cx="44" cy="108" r="3" fill="#007E7F"/><text x="54" y="112" class="s">MODEL</text><circle cx="128" cy="108" r="3" fill="#14823E"/><text x="138" y="112" class="s">TOOLS</text><circle cx="212" cy="108" r="3" fill="#14823E"/><text x="222" y="112" class="s">SKILL</text></g>
+              <rect x="406" y="40" width="288" height="116" class="node blue"/>
+              <text x="424" y="66" class="t">桥接层</text><text x="424" y="84" class="s">graph bridge / trace bridge</text><text x="424" y="108" class="s" fill="#0B66D6">只做映射，不重复实现</text><text x="424" y="126" class="s">插件树 → 图数据 / 事件 → 执行流</text>
+              <rect x="786" y="40" width="290" height="116" class="node"/>
+              <text x="804" y="66" class="t">WebSocket</text><text x="804" y="84" class="s">增量推送 / 状态回放</text><text x="804" y="108" class="s">graph snapshots</text><text x="804" y="126" class="s">session events</text>
+              <rect x="406" y="242" width="670" height="84" class="node"/>
+              <text x="424" y="268" class="t">Electron + React 观测层</text><text x="424" y="286" class="s">3D 图谱 / DAG / 时间线 / 详情面板</text><text x="424" y="306" class="s" fill="#0B66D6">本地优先 · 布局记忆 · 双主题</text>
+              <g class="l"><path d="M314 98H370" class="l blue"/><path d="M394 98H406" class="l blue"/><path d="M694 98H750" class="l blue"/><path d="M774 98H786" class="l blue"/><path d="M930 156V214H930" class="l blue"/></g>
+              <g fill="#0B66D6"><path d="M404 98l-7-4v8z"/><path d="M784 98l-7-4v8z"/><path d="M930 240l-4-7h8z"/></g>
+              <text x="330" y="88" class="s">插件树 / 事件</text><text x="708" y="88" class="s">映射</text><text x="942" y="198" class="s">增量推送</text>
+              <text x="42" y="196" class="s" fill="#6B6B6B">不修改运行时核心</text><text x="42" y="214" class="s" fill="#6B6B6B">扩展以插件形式挂载</text>
+            </svg>
+            <div class="arch-mobile">
+              <div class="node"><b>Cordis 插件运行时</b><span>插件树 / 生命周期 / 事件</span></div><div class="conn"></div>
+              <div class="node blue"><b>桥接层</b><span>graph bridge / trace bridge · 只做映射</span></div><div class="conn"></div>
+              <div class="node"><b>WebSocket</b><span>增量推送 / 状态回放</span></div><div class="conn"></div>
+              <div class="node"><b>Electron + React 观测层</b><span>3D 图谱 / DAG / 时间线 / 详情面板</span></div>
+            </div>
+          </div>

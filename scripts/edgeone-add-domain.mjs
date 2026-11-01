@@ -1,0 +1,15 @@
+﻿import { chromium } from 'file:///E:/dexAgent/node_modules/@playwright/test/index.mjs'
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9222')
+const page = browser.contexts()[0].pages()[0]
+await page.getByText('域名管理', { exact: true }).first().click()
+await page.waitForTimeout(5000)
+console.log('URL',page.url())
+console.log((await page.locator('body').innerText()).slice(-2500))
+await page.getByText('添加自定义域名', { exact: true }).first().click()
+await page.waitForTimeout(2000)
+console.log('---after click---')
+console.log((await page.locator('body').innerText()).slice(-3000))
+const inputs = await page.evaluate(()=>[...document.querySelectorAll('input')].map(e=>({type:e.type,placeholder:e.placeholder,cls:e.className})).filter(x=>x.type==='text'))
+console.log(JSON.stringify(inputs,null,2))
+await page.screenshot({path:'E:/Dex/dex-site/artifacts/edgeone/53-add-domain.png'})
+await browser.close()

@@ -1,0 +1,136 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+interface Props {
+  title: string
+  description: string
+  current?: string
+  ogImage?: string
+  schema?: boolean
+}
+
+const {
+  title,
+  description,
+  current = '/',
+  ogImage = '/images/og.png',
+  schema = false,
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const ogUrl = new URL(ogImage, Astro.site)
+const jsonLd = schema
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Dex AGENT',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Windows, macOS, Linux',
+      description,
+      url: canonical.toString(),
+    })
+  : null
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/images/brand/dex-logo-app-icon.png" />
+    <link rel="apple-touch-icon" href="/images/brand/dex-logo-app-icon.png" />
+    <link rel="stylesheet" href="/fonts/noto-sans-sc.css" />
+    <meta name="theme-color" content="#F7F7F7" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到主内容</a>
+    <Header current={current} />
+    <main id="main"><slot /></main>
+    <Footer />
+    <script>
+      document.documentElement.classList.add('js')
+
+      const menu = document.getElementById('mobile-menu')
+      const menuBtn = document.querySelector('.menu-btn')
+      const closeBtn = document.querySelector('.menu-close')
+      const setMenu = (open: boolean) => {
+        document.body.classList.toggle('menu-open', open)
+        menu?.setAttribute('aria-hidden', String(!open))
+        menuBtn?.setAttribute('aria-expanded', String(open))
+      }
+      menuBtn?.addEventListener('click', () => setMenu(true))
+      closeBtn?.addEventListener('click', () => setMenu(false))
+      menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)))
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false)
+      })
+
+      const reveal = document.querySelectorAll('[data-reveal]')
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible')
+                io.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.12 },
+        )
+        reveal.forEach((el) => io.observe(el))
+      } else {
+        reveal.forEach((el) => el.classList.add('is-visible'))
+      }
+
+      const timeline = document.getElementById('timeline')
+      const playBtn = document.getElementById('play-timeline')
+      const timeRead = document.getElementById('time-read')
+      const setPlay = (pct: number, label: string) => {
+        if (timeline) timeline.style.setProperty('--play', `${pct}%`)
+        if (timeRead) timeRead.textContent = label
+      }
+      const marks: Array<[number, string]> = [
+        [0, '00:00'],
+        [20, '00:12'],
+        [40, '00:31'],
+        [60, '00:48'],
+        [80, '00:57'],
+        [100, '01:02'],
+      ]
+      playBtn?.addEventListener('click', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          setPlay(60, '00:48')
+          return
+        }
+        const start = performance.now()
+        const duration = 1500
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / duration)
+          const eased = 1 - Math.pow(1 - t, 3)
+          const pct = 60 * eased
+          const closest = marks.reduce((a, b) => (Math.abs(b[0] - pct) < Math.abs(a[0] - pct) ? b : a), marks[0])
+          setPlay(pct, closest[1])
+          if (t < 1) requestAnimationFrame(tick)
+          else setPlay(60, '00:48')
+        }
+        requestAnimationFrame(tick)
+      })
+    </script>
+  </body>
+</html>

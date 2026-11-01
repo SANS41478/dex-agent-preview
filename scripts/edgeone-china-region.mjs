@@ -1,0 +1,16 @@
+﻿import { chromium } from 'file:///E:/dexAgent/node_modules/@playwright/test/index.mjs'
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9222')
+const page = browser.contexts()[0].pages()[0]
+await page.goto('https://console.cloud.tencent.com/edgeone/makers', { waitUntil:'domcontentloaded' })
+await page.waitForTimeout(4000)
+await page.getByText('直接上传', { exact: true }).first().click()
+await page.waitForTimeout(3000)
+console.log('URL',page.url())
+const region = page.locator('.sdk-eo-pages-dropdown__value').first()
+console.log('region', await region.innerText())
+await region.click()
+await page.waitForTimeout(500)
+const opts = await page.evaluate(()=>[...document.querySelectorAll('li')].map(e=>{const r=e.getBoundingClientRect();return {text:e.innerText.trim(),x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),h:Math.round(r.height)}}).filter(x=>x.w>0&&x.h>0&&x.text))
+console.log(JSON.stringify(opts.slice(-20),null,2))
+await page.screenshot({path:'E:/Dex/dex-site/artifacts/edgeone/46-china-region.png'})
+await browser.close()

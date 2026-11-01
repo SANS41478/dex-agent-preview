@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ArchDiagram from '../components/ArchDiagram.astro'
+import CtaBand from '../components/CtaBand.astro'
+---
+
+<BaseLayout
+  title="关于 Dex AGENT — Open the loop."
+  description="Dex AGENT 是独立产品：把 Agent 黑箱打开，变成可观察、可拆解、可扩展的桌面工作台。"
+  current="/about/"
+>
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div>
+        <p class="eyebrow">ABOUT / FIELD MANUAL 001</p>
+        <h1>打开<br />回路。</h1>
+        <p>大多数 Agent 工具只给你一个输入框和一个输出流。Dex AGENT 想把中间那层打开：插件怎么挂载、工具怎么被调用、为什么这一步花了四秒、失败从哪一步开始传播。</p>
+      </div>
+      <div class="about-logo"><img src="/images/brand/dex-logo-app-icon.png" width="180" height="180" alt="Dex AGENT 应用图标" /></div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">PRINCIPLES</div><h2>四条原则</h2><p class="note">来自设计系统 / 任何视觉决策都要能解释语义</p></div>
+      <div class="notes-grid">
+        <div class="note-item"><span class="n">01</span><div><h3>视觉即解释</h3><p>每个视觉编码对应一个可解释的语义；没有“为了好看”的第三种蓝。</p></div></div>
+        <div class="note-item"><span class="n">02</span><div><h3>动效承载信息</h3><p>动效表达状态变化，不是循环播放的装饰。脉冲只用于“仍在运行”。</p></div></div>
+        <div class="note-item"><span class="n">03</span><div><h3>空间记忆优于面板切换</h3><p>布局稳定，聚焦子图，不重新排列世界。你调过的宽度会被记住。</p></div></div>
+        <div class="note-item"><span class="n">04</span><div><h3>性能即体验</h3><p>50fps 是及格线。宁可少一层阴影，也不接受掉帧。</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">BOUNDARY</div><h2>是什么，不是什么。</h2><p class="note">产品边界 / 与 IDE、云端服务的区别</p></div>
+      <div class="about-grid">
+        <div>
+          <div class="about-list">
+            <div><span class="k">IS</span><span class="v"><b>可实际执行编码任务的 Agent 工作台。</b>选择工作区、创建会话、提交任务、看到回复。</span></div>
+            <div><span class="k">IS</span><span class="v"><b>可观察、可拆解、可扩展的观测层。</b>3D 图谱、DAG、时间线与联动。</span></div>
+            <div><span class="k">IS</span><span class="v"><b>本地优先的桌面应用。</b>工作区与会话留在本机。</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="about-list">
+            <div><span class="k">NOT</span><span class="v"><b>不是 IDE 替代品。</b>不追求编辑器级 diff、补全与重构。</span></div>
+            <div><span class="k">NOT</span><span class="v"><b>不是云端同步服务。</b>没有账号、云盘与远程工作区。</span></div>
+            <div><span class="k">NOT</span><span class="v"><b>不是多 Agent 编排器。</b>先把一个 Agent 看清楚。</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">ARCHITECTURE</div><h2>结构</h2><p class="note">Cordis 插件运行时 / 桥接层 / Electron + React</p></div>
+      <div class="chapter-body wide-figure">
+        <div class="chapter-text">
+          <p class="lead">Cordis 插件运行时提供插件树与事件；桥接层把它们映射为图数据与执行流；Electron + React 负责桌面壳与观测界面。</p>
+          <ul class="notes">
+            <li><span class="k">RUNTIME</span><span class="v"><b>不修改运行时核心。</b>扩展以插件形式挂载。</span></li>
+            <li><span class="k">BRIDGE</span><span class="v"><b>桥接只做映射。</b>不重复实现插件树与事件驱动。</span></li>
+            <li><span class="k">OBSERVE</span><span class="v"><b>前端通过注册机制扩展。</b>新的可视化类型不需要改核心。</span></li>
+          </ul>
+        </div>
+        <div class="chapter-figure"><ArchDiagram /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="container">
+      <div class="chapter-head"><div class="fig">STACK</div><h2>技术栈</h2><p class="note">v0.2 / 开发中</p></div>
+      <div class="about-grid">
+        <div class="stack-list">
+          <div><b>DESKTOP</b>Electron</div>
+          <div><b>UI</b>React</div>
+          <div><b>3D</b>Three.js + react-force-graph-3d</div>
+          <div><b>FLOW</b>React Flow</div>
+          <div><b>LAYOUT</b>elkjs</div>
+          <div><b>STATE</b>Zustand</div>
+          <div><b>TRANSPORT</b>WebSocket</div>
+          <div><b>TYPE</b>Geist / Noto Sans SC</div>
+        </div>
+        <div class="about-list">
+          <div><span class="k">VERSION</span><span class="v"><b>v0.2 · 开发中</b></span></div>
+          <div><span class="k">DONE</span><span class="v">编码主循环、3D 图谱、执行流、时间旅行</span></div>
+          <div><span class="k">NEXT</span><span class="v">插件能力预览、任务控制、错误降级</span></div>
+          <div><span class="k">PLATFORM</span><span class="v">Windows / macOS / Linux</span></div>
+          <div><span class="k">CONTACT</span><span class="v">内测、反馈、合作，都可以从预约页开始。</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand secondaryHref="/observe/" secondaryLabel="看观测能力" />
+</BaseLayout>

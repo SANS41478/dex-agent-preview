@@ -1,0 +1,47 @@
+---
+const platforms = [
+  {
+    id: 'windows',
+    name: 'Windows',
+    platform: 'Windows 10/11 · x64',
+    requirement: '桌面安装包 · 本地运行时配置说明',
+    icon: 'windows',
+  },
+  {
+    id: 'macos',
+    name: 'macOS',
+    platform: 'macOS 13+ · Apple Silicon / Intel',
+    requirement: '桌面安装包 · 本地运行时配置说明',
+    icon: 'apple',
+  },
+  {
+    id: 'linux',
+    name: 'Linux',
+    platform: 'Linux · x64',
+    requirement: '桌面安装包 · 本地运行时配置说明',
+    icon: 'linux',
+  },
+]
+---
+
+<div class="platform-table">
+  {platforms.map((item) => (
+    <div class="prow">
+      <div class="pname">
+        {item.icon === 'windows' && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" /></svg>
+        )}
+        {item.icon === 'apple' && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 3.5c1.5 1.8 1.2 4.4-.4 6.1M12 21a8 8 0 0 0 8-8c0-4.4-3.6-8-8-8s-8 3.6-8 8a8 8 0 0 0 8 8Z" /></svg>
+        )}
+        {item.icon === 'linux' && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16v14H4zM8 9l-2 3 2 3M16 9l2 3-2 3M12 18v3" /></svg>
+        )}
+        <div><b>{item.name}</b><span>{item.platform}</span></div>
+      </div>
+      <div class="preq">{item.requirement}</div>
+      <span class="ptag">即将开放</span>
+      <a class="btn btn-ghost" href="#waitlist" data-platform={item.name}>预约内测</a>
+    </div>
+  ))}
+</div>

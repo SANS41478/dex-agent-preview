@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="一次执行，应该看得见。跟着 Dex AGENT 走完一次真实编码任务的 Step、Tool Call 与失败路径。">
+<title>Dex AGENT — 一次执行，应该看得见</title>
+<link rel="icon" href="../public/images/brand/dex-logo-app-icon.png">
+<link rel="stylesheet" href="../public/fonts/noto-sans-sc.css">
+<link rel="stylesheet" href="dir-3.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主内容</a>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<header class="site-head">
+  <div class="container head-inner">
+    <a class="brand" href="dir-3.html"><span class="brand-mark" aria-hidden="true"></span>Dex AGENT</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="dir-3.html" aria-current="page">首页</a>
+      <a href="#run">回放</a>
+      <a href="#why">判断</a>
+      <a href="dir-3-download.html">下载</a>
+    </nav>
+    <div class="head-actions"><span class="head-meta">RUN 001 / 01:02</span><a class="btn btn-primary" href="dir-3-download.html">下载 Dex AGENT</a><button class="icon-btn menu-btn" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <button class="icon-btn close menu-close" type="button" aria-label="关闭导航"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <a href="dir-3.html">首页</a><a href="#run">回放</a><a href="#why">判断</a><a href="dir-3-download.html">下载</a>
+  <div class="m-actions"><a class="btn btn-primary" href="dir-3-download.html">下载 Dex AGENT</a></div>
+  <div class="m-note">DEX AGENT / RUN 001 / 2026</div>
+</div>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-top">
+        <div class="left"><i></i><span class="eyebrow">RUN 001 / EXAMPLE TASK</span></div>
+        <span class="eyebrow">00:00 — 01:02 / 2026-10-30</span>
+      </div>
+      <h1>一次执行，<br><span class="dim">应该看得见。</span></h1>
+      <p class="lede">从一句话开始，跟着 Step、Tool Call 与失败路径，走完一次真实的编码任务。不是结果截图，是一条可以回退的执行线。</p>
+      <div class="actions"><a class="btn btn-primary" href="#run">开始回放</a><a class="text-link" href="dir-3-download.html">下载 Dex AGENT</a></div>
+      <figure class="hero-window" data-reveal>
+        <div class="bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="t">Dex — RUN 001 / 检查构建脚本</span><span class="r">EXAMPLE / REAL UI</span></div>
+        <img src="../public/images/screens/hero-dark.png" width="1200" height="852" alt="Dex AGENT 桌面界面：会话、3D 插件图谱与执行流。">
+        <div class="hero-timeline"><div><b>00:00</b>prompt</div><div><b>00:12</b>step 01</div><div class="on"><b>00:31</b>tool call</div><div><b>00:48</b>failure</div><div><b>01:02</b>replay</div></div>
+      </figure>
+      <p class="run-note" style="margin-top:12px">示例执行 / 真实界面截图 / 非实时数据</p>
+    </div>
+  </section>
+
+  <section class="run" id="run">
+    <div class="container">
+      <div class="run-grid">
+        <div class="run-steps">
+          <article class="run-step is-active" data-stage="0">
+            <div class="ts"><i></i>00:00 / PROMPT</div>
+            <div class="label">TURN 01 · 输入</div>
+            <h2>你只说了一句话。</h2>
+            <p class="body">“检查构建脚本并给出修改建议。” 工作区、模型、推理强度都已经就位。剩下的，交给 Agent。</p>
+            <p class="quote">你不需要先学会它的内部结构，才能使用它。但你应该能在需要时看见它。</p>
+            <figure class="inline-shot"><img src="../public/images/screens/chat-dark.png" alt="会话界面：用户发出构建脚本检查请求，助手给出分析与建议。"><figcaption>00:00 / 会话 / 真实界面</figcaption></figure>
+          </article>
+
+          <article class="run-step" data-stage="1">
+            <div class="ts"><i></i>00:12 / STEP 01</div>
+            <div class="label">STEP 01 · 读取</div>
+            <h2>它先读 package.json。</h2>
+            <p class="body">Step 不是一行日志，是一个节点。它带着推理摘要、工具调用和耗时；点击节点，Tool Call 会展开。</p>
+            <p class="quote">Turn → Step → Tool Call。层级不是装饰，是定位问题的坐标系。</p>
+            <figure class="inline-shot"><img src="../public/images/screens/dag-dark.png" alt="执行流 DAG：Turn、Step 与 read 工具调用的节点。"><figcaption>00:12 / DAG / Step 01</figcaption></figure>
+          </article>
+
+          <article class="run-step" data-stage="2">
+            <div class="ts"><i></i>00:31 / TOOL CALL</div>
+            <div class="label">STEP 02 — 03 · 调用</div>
+            <h2>然后搜索、编辑、运行测试。</h2>
+            <p class="body">read、grep、edit、test。每个 Tool Call 都有入参、返回和耗时；失败的那一个会被标红，并向上传播。</p>
+            <p class="quote">工具调用不是黑盒里的魔法。它是你可以在详情面板里读到的证据。</p>
+            <figure class="inline-shot"><img src="../public/images/screens/chat-dark.png" alt="会话中的工具调用卡：read 成功，耗时 118ms。"><figcaption>00:31 / TOOL CALL / 真实界面</figcaption></figure>
+          </article>
+
+          <article class="run-step" data-stage="3">
+            <div class="ts"><i></i>00:48 / FAILURE</div>
+            <div class="label">STEP 04 · 失败</div>
+            <h2>失败也有位置。</h2>
+            <p class="body">失败节点变红，并沿依赖向上传播。点一下，详情面板给出错误原因、堆栈与当时的推理文本。这张图是另一个失败示例：模型凭据缺失。</p>
+            <p class="quote">失败不是一行红字，而是一条可以重新进入的路径。</p>
+            <figure class="inline-shot"><img src="../public/images/screens/failed-dark.png" alt="失败状态：执行失败，provider 没有配置 API key，失败向上传播到 Turn。"><figcaption>00:48 / FAILURE EXAMPLE / 真实界面</figcaption></figure>
+          </article>
+
+          <article class="run-step" data-stage="4">
+            <div class="ts"><i></i>01:02 / REPLAY</div>
+            <div class="label">TIME · 回退</div>
+            <h2>现在，把这次执行倒回去。</h2>
+            <p class="body">时间线不是录像。它重建状态：回到任意 Step，查看当时的上下文，再走一遍。失败不是终点。</p>
+            <p class="quote">回放不是看像素，是看状态。你回到的是那一步，而不是那一段视频。</p>
+            <figure class="inline-shot"><img src="../public/images/screens/timeline-dark.png" alt="时间线与 3D 图谱联动：选中 Step，右侧显示对应插件。"><figcaption>01:02 / REPLAY / 真实界面</figcaption></figure>
+          </article>
+        </div>
+
+        <aside class="run-viewport" aria-label="执行回放视图">
+          <div class="run-frame">
+            <div class="run-stack" id="run-stack">
+              <figure data-stage="0" class="is-active"><img src="../public/images/screens/chat-dark.png" alt="会话：检查构建脚本的请求与回复。"></figure>
+              <figure data-stage="1"><img src="../public/images/screens/hero-dark.png" alt="执行流 DAG 与 3D 图谱同屏。"></figure>
+              <figure data-stage="2"><img src="../public/images/screens/chat-dark.png" alt="会话中的工具调用卡。"></figure>
+              <figure data-stage="3"><img src="../public/images/screens/failed-dark.png" alt="失败状态：provider 没有配置 API key。"></figure>
+              <figure data-stage="4"><img src="../public/images/screens/timeline-dark.png" alt="时间线与图谱联动。"></figure>
+            </div>
+            <div class="run-hud top"><span class="live"><i></i>RUN 001</span><span id="hud-label">PROMPT / 00:00</span></div>
+            <div class="run-hud bottom"><span id="hud-step">STEP 01 / 05</span><span id="hud-time">00:00</span></div>
+          </div>
+          <div class="run-ticks" role="tablist" aria-label="回放阶段">
+            <button type="button" class="is-active" data-go="0"><b>00:00</b>prompt</button>
+            <button type="button" data-go="1"><b>00:12</b>step 01</button>
+            <button type="button" data-go="2"><b>00:31</b>tool</button>
+            <button type="button" data-go="3"><b>00:48</b>failed</button>
+            <button type="button" data-go="4"><b>01:02</b>replay</button>
+          </div>
+          <div class="run-status"><span>STATUS / <b id="hud-status">RUNNING</b></span><span id="hud-status-note">示例执行</span></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="interpret" id="why">
+    <div class="container">
+      <div class="interpret-head"><div><p class="eyebrow">WHY A RUN</p><h2>这不是一段录屏。</h2></div><p>录屏只能证明“发生过”。Dex AGENT 要证明的是“为什么发生、从哪里失败、怎么回去”。</p></div>
+      <div class="interpret-grid">
+        <div><b>01 / STATE</b><h3>重建状态</h3><p>回放的是事件与上下文，不是像素。回到那一步，看到当时的输入、工具返回与推理。</p></div>
+        <div><b>02 / LOCATE</b><h3>定位节点</h3><p>每个 Step 都能回到 3D 图谱里的插件节点；选中工具，执行流过滤出调用它的步骤。</p></div>
+        <div><b>03 / REWIND</b><h3>可以回退</h3><p>失败不是终点。回退、查看、再走一遍，是调试 Agent 的基本动作。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-inner">
+      <div><p class="eyebrow">OPEN THE LOOP / 打开回路</p><h2>把回路<br>装进桌面。</h2><p>内测预约开放中。安装包与配置说明准备好后，我们会通过邮件联系你。</p><div class="actions"><a class="btn btn-primary" href="dir-3-download.html#waitlist">预约内测</a><a class="text-link" href="#run">再看一遍</a></div></div>
+      <div class="cta-side">DEX AGENT / v0.2<br>RUN 001 / 01:02<br>WINDOWS · MACOS · LINUX<br>INDEPENDENT PRODUCT</div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand"><a class="brand" href="dir-3.html"><span class="brand-mark" aria-hidden="true"></span>Dex AGENT</a><p>把 Agent 黑箱打开，变成可观察、可拆解、可扩展的对象。</p></div>
+      <div class="foot-col"><h3>产品</h3><a href="dir-3.html">首页</a><a href="#run">回放</a><a href="dir-3-download.html">下载</a><a href="#why">关于</a></div>
+      <div class="foot-col"><h3>资源</h3><a href="dir-3-download.html#waitlist">内测预约</a><a href="dir-3-download.html#faq">FAQ</a><a href="#run">RUN 001</a></div>
+      <div class="foot-col"><h3>阶段</h3><a href="#run">PROMPT</a><a href="#run">STEP / TOOL</a><a href="#run">FAILURE</a><a href="#run">REPLAY</a></div>
+    </div>
+    <div class="foot-bottom"><p>Dex AGENT 是独立产品，与模型厂商无隶属关系。回放为示例执行，非实时数据。</p><span>© 2026 DEX AGENT / RUN 001</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const menu = document.getElementById('mobile-menu'); const menuBtn = document.querySelector('.menu-btn'); const closeBtn = document.querySelector('.menu-close');
+  const setMenu = (open) => { document.body.classList.toggle('menu-open', open); menu?.setAttribute('aria-hidden', String(!open)); menuBtn?.setAttribute('aria-expanded', String(open)); };
+  menuBtn?.addEventListener('click', () => setMenu(true)); closeBtn?.addEventListener('click', () => setMenu(false));
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  const stages = [
+    { time:'00:00', label:'PROMPT', status:'RUNNING' },
+    { time:'00:12', label:'STEP 01', status:'RUNNING' },
+    { time:'00:31', label:'TOOL CALL', status:'RUNNING' },
+    { time:'00:48', label:'FAILURE', status:'FAILED' },
+    { time:'01:02', label:'REPLAY', status:'REPLAY' }
+  ];
+  const steps = [...document.querySelectorAll('.run-step')];
+  const figures = [...document.querySelectorAll('#run-stack figure')];
+  const ticks = [...document.querySelectorAll('.run-ticks button')];
+  const hudLabel = document.getElementById('hud-label');
+  const hudStep = document.getElementById('hud-step');
+  const hudTime = document.getElementById('hud-time');
+  const hudStatus = document.getElementById('hud-status');
+  const hudStatusNote = document.getElementById('hud-status-note');
+  let active = -1;
+
+  function setActive(index, scroll) {
+    if (index === active) return;
+    active = index;
+    const s = stages[index];
+    steps.forEach((el, i) => el.classList.toggle('is-active', i === index));
+    figures.forEach((el, i) => el.classList.toggle('is-active', i === index));
+    ticks.forEach((el, i) => el.classList.toggle('is-active', i === index));
+    if (hudLabel) hudLabel.textContent = `${s.label} / ${s.time}`;
+    if (hudStep) hudStep.textContent = `STEP ${String(index + 1).padStart(2, '0')} / 05`;
+    if (hudTime) hudTime.textContent = s.time;
+    if (hudStatus) { hudStatus.textContent = s.status; hudStatus.style.color = s.status === 'FAILED' ? 'var(--failed)' : s.status === 'REPLAY' ? 'var(--accent)' : 'var(--success)'; }
+    if (hudStatusNote) hudStatusNote.textContent = s.status === 'FAILED' ? '失败示例' : s.status === 'REPLAY' ? '可回退' : '示例执行';
+    if (scroll) steps[index]?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) setActive(Number(entry.target.dataset.stage), false); });
+    }, { rootMargin: '-38% 0px -46% 0px', threshold: 0 });
+    steps.forEach(el => io.observe(el));
+  } else setActive(0, false);
+
+  ticks.forEach(btn => btn.addEventListener('click', () => setActive(Number(btn.dataset.go), true)));
+
+  const progress = document.querySelector('.scroll-progress i');
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+    if (progress) progress.style.width = pct + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  const reveal = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); } }); }, { threshold: .1 }); reveal.forEach(el => io.observe(el)); } else reveal.forEach(el => el.classList.add('is-visible'));
+})();
+</script>
+</body>
+</html>

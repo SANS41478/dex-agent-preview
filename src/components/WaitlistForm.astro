@@ -1,0 +1,53 @@
+---
+const platforms = ['Windows', 'macOS', 'Linux', '其他']
+const roles = ['Agent 开发者', '团队 / 公司', '其他']
+---
+
+<form class="form2" id="waitlist-form" novalidate>
+  <label>邮箱<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required /></label>
+  <label>平台<select name="platform">{platforms.map((item) => <option>{item}</option>)}</select></label>
+  <label>角色<select name="role">{roles.map((item) => <option>{item}</option>)}</select></label>
+  <label>备注（可选）<input type="text" name="note" placeholder="你希望用它做什么？" /></label>
+  <div class="form2-actions">
+    <button class="btn btn-primary" type="submit">提交预约</button>
+    <span class="form2-note">只用于内测通知 · 不进入营销名单</span>
+  </div>
+  <div class="form2-message" id="form-message" role="status" aria-live="polite"></div>
+</form>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null
+  const message = document.getElementById('form-message')
+  const platformSelect = form?.querySelector('select[name="platform"]') as HTMLSelectElement | null
+
+  document.querySelectorAll<HTMLElement>('[data-platform]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const platform = link.dataset.platform
+      if (platformSelect && platform) platformSelect.value = platform
+    })
+  })
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const email = form.querySelector('input[name="email"]') as HTMLInputElement | null
+    const value = email?.value.trim() ?? ''
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      if (message) {
+        message.textContent = '请填写一个有效的邮箱地址。'
+        message.classList.add('error')
+      }
+      email?.focus()
+      return
+    }
+    if (message) {
+      message.classList.remove('error')
+      message.textContent = '将在邮件客户端中打开预约邮件。若没有反应，请直接发送到 hello@example.com。'
+    }
+    const platform = platformSelect?.value ?? '未选择'
+    const role = (form.querySelector('select[name="role"]') as HTMLSelectElement | null)?.value ?? '未选择'
+    const note = (form.querySelector('input[name="note"]') as HTMLInputElement | null)?.value.trim() ?? ''
+    const subject = encodeURIComponent('Dex AGENT 内测预约')
+    const body = encodeURIComponent(`邮箱：${value}\n平台：${platform}\n角色：${role}\n备注：${note || '无'}`)
+    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`
+  })
+</script>
