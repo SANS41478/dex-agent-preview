@@ -138,8 +138,8 @@ pnpm build   # 5 pages: /, /observe/, /download/, /about/, /404.html
 
 ### 生产部署（2026-11-02）
 
-- 源站提交：`source@e912290` `feat(atlas): mount plugin archive under /atlas/`。
-- Pages 提交：`main@c60accd` `Deploy production site with /atlas/ plugin archive`。
+- 源站提交：`source@6065b8f` `refactor(site): de-emphasize atlas entry`（文档记录 `4f7c70d`）。
+- Pages 提交：`main@262c49d` `Deploy production site without top-level atlas link`。
 - `https://dexagent.dpdns.org/` 200；顶部导航已移除「档案」，只在页脚资源/声明与观测页正文保留弱入口；`/atlas/` 200。
 - `https://dexagent.dpdns.org/atlas/#/pkg-name/%40deepseek-ai%2Fdsh-tool-fs` 渲染 `tool-fs`；源码入口隐藏、无 `/api/*` 请求、无控制台错误、桌面与 390px 移动端无横向溢出。
 - GitHub Pages：`status=built`，source=`main:/`，CNAME=`dexagent.dpdns.org`；截图：`artifacts/atlas-verify/prod-tool-fs*.png`。
