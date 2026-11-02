@@ -136,9 +136,13 @@ pnpm build   # 5 pages: /, /observe/, /download/, /about/, /404.html
 - 截图：`artifacts/atlas-verify/atlas-home.png`、`atlas-tool-fs.png`、`atlas-tool-fs-mobile.png`。
 - 限制：静态托管没有 `/api/*`，源码浏览器与「读源码 / 行号跳转」不可用；需要源码时运行本地研究站。
 
-### 待部署
+### 生产部署（2026-11-02）
 
-- `/atlas/`、官网导航/页脚入口与内容边界更新已在本地构建验证，但尚未推送 GitHub Pages；需执行 `pnpm build:gh-pages` 后把 `artifacts/gh-pages-prod` 推到 Pages 仓库。
+- 源站提交：`source@e912290` `feat(atlas): mount plugin archive under /atlas/`。
+- Pages 提交：`main@c60accd` `Deploy production site with /atlas/ plugin archive`。
+- `https://dexagent.dpdns.org/` 200，首页已包含「档案」入口；`/atlas/` 200。
+- `https://dexagent.dpdns.org/atlas/#/pkg-name/%40deepseek-ai%2Fdsh-tool-fs` 渲染 `tool-fs`；源码入口隐藏、无 `/api/*` 请求、无控制台错误、桌面与 390px 移动端无横向溢出。
+- GitHub Pages：`status=built`，source=`main:/`，CNAME=`dexagent.dpdns.org`；截图：`artifacts/atlas-verify/prod-tool-fs*.png`。
 
 ### 最终 caveats
 
