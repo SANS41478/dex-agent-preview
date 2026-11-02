@@ -8,6 +8,8 @@
     "build": "astro build",
     "build:gh-preview": "node scripts/build-gh-preview.mjs",
     "build:gh-pages": "node scripts/build-gh-pages.mjs",
+    "sync:atlas": "node scripts/sync-atlas.mjs",
+    "test:atlas": "node scripts/verify-atlas.mjs",
     "preview": "astro preview",
     "check": "astro check"
   },

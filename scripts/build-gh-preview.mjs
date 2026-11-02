@@ -37,6 +37,9 @@ async function* walk(dir) {
 
 for await (const file of walk(out)) {
   if (!extensions.has(path.extname(file))) continue
+  const relative = path.relative(out, file).split(path.sep).join('/')
+  // atlas 的 JS/数据使用相对路径，不做 base-path 重写；只处理它的入口 HTML。
+  if (relative.startsWith('atlas/') && relative !== 'atlas/index.html') continue
   const before = await readFile(file, 'utf8')
   let text = before
 

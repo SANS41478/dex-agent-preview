@@ -1,5 +1,5 @@
 ﻿const base = 'http://127.0.0.1:4321'
-const pages = ['/','/observe/','/download/','/about/','/404.html']
+const pages = ['/','/observe/','/download/','/about/','/atlas/','/404.html']
 const hrefs = new Set(pages)
 for (const p of pages) {
   const html = await (await fetch(base + p)).text()

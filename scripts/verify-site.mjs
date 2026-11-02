@@ -1,9 +1,9 @@
 import { chromium } from 'file:///E:/dexAgent/node_modules/@playwright/test/index.mjs'
 import { mkdirSync } from 'node:fs'
 
-const base = 'https://dexagent.dpdns.org'
+const base = process.env.SITE_BASE ?? 'https://dexagent.dpdns.org'
 const out = 'E:/Dex/dex-site/artifacts/site-verify'
-const pages = ['/', '/observe/', '/download/', '/about/', '/does-not-exist']
+const pages = ['/', '/observe/', '/download/', '/about/', '/atlas/', '/does-not-exist']
 mkdirSync(out, { recursive: true })
 
 const browser = await chromium.launch()

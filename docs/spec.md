@@ -108,7 +108,8 @@
 
 ## 11. 约束
 
-- 公开页禁用：dsh / DeepSeek Harness / deepseek-harness / 含 dsh 的包名、CLI、profile。
+- 营销页面（`/`、`/observe/`、`/download/`、`/about/`、`/404`）禁用：dsh / DeepSeek Harness / deepseek-harness / 含 dsh 的包名、CLI、profile。
+- `/atlas/` 技术档案例外：允许出现 dsh / DeepSeek Harness / 含 dsh 的包名、CLI、profile；页面必须标注为技术档案，并默认 noindex。
 - 允许：Cordis、插件运行时、插件树、桥接层。
 - 不编造数据、评价、客户 logo、下载链接、版本号。
 - 下载页没有安装包就不出现可下载假按钮。
@@ -119,8 +120,8 @@
 ## 12. 验收
 
 - 三方向：6 缩略图 + 3 完整首页 + 3 下载页样张 + 截图 + 方向卡；`design_lint check/compare` 通过。
-- 最终站：4 页 + 404；`pnpm astro check`、`pnpm build`、`pnpm preview` 通过。
-- `dist` 中 grep 不到公开禁用词。
+- 最终站：营销 4 页 + 404 + `/atlas/` 静态技术档案；`pnpm astro check`、`pnpm build`、`pnpm preview` 通过。
+- `dist` 的营销页面中 grep 不到公开禁用词；`dist/atlas/` 按技术档案例外处理。
 - 1440/375 截图无横向滚动、无控制台错误、无坏链。
 - 预约表单不伪造成功；README 标注占位替换点。
-- 不改 `E:\dexAgent`，不提交 git，不部署。
+- 不自动推送 GitHub Pages；部署前由用户确认。

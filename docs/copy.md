@@ -1,6 +1,6 @@
 # Dex AGENT 官网 · 文案稿
 
-> 规则：公开页不得出现 dsh / DeepSeek Harness / deepseek-harness。`Cordis` 可用。
+> 规则：营销页面不得出现 dsh / DeepSeek Harness / deepseek-harness；`/atlas/` 技术档案例外（允许原始包名与源码术语，但默认 noindex）。`Cordis` 可用。
 > 语气：短句、精确、克制；不用“赋能/一站式/革命性”；不用 emoji。
 
 ## 全局
@@ -15,6 +15,7 @@
 
 - 首页
 - 观测
+- 档案
 - 下载
 - 关于
 - 按钮：下载
@@ -272,8 +273,8 @@
 ## Footer
 
 - 左：Logo + `Dex AGENT` + `Open the loop.`
-- 产品：`首页` / `观测` / `下载` / `关于`
-- 资源：`内测预约` / `FAQ` / `版本状态`
+- 产品：`首页` / `观测` / `档案` / `下载` / `关于`
+- 资源：`内测预约` / `FAQ` / `版本状态` / `插件档案`
 - 声明：`Dex AGENT 是独立产品，与模型厂商无隶属关系。`
 - 版权：`© 2026 Dex AGENT`
 - 不使用假社交链接、假 GitHub、假备案号。

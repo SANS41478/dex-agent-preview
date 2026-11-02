@@ -1,6 +1,6 @@
 # Dex AGENT Website
 
-基于 **方向 2「剖面手册 / Exploded Manual」** 的 4 页静态官网。
+基于 **方向 2「剖面手册 / Exploded Manual」** 的 4 页静态官网 + `/atlas/` 插件技术档案。
 
 ## 状态
 
@@ -10,6 +10,7 @@
 - ✅ `astro check`、`astro build`、`astro preview` 通过。
 - ✅ 1440 / 375 Playwright 检查：无控制台错误、坏图、横向溢出。
 - ✅ 正式域名已上线：`https://dexagent.dpdns.org/`，GitHub Pages + HTTPS 强制跳转。
+- ✅ `/atlas/` 已接入静态技术档案快照；源码浏览器在静态托管下隐藏。
 - ⏳ 预约端点、安装包链接仍为占位。
 
 ## 页面
@@ -20,6 +21,7 @@
 | `/observe/` | 观测能力：图谱编码、DAG、时间线、可点击联动示意、性能 |
 | `/download/` | 平台占位、内测预约、FAQ |
 | `/about/` | Open the loop.、原则、边界、架构、技术栈、版本 |
+| `/atlas/` | 插件技术档案：319 个插件逐包精读、分层讲解、能力接缝、事件与工具目录（静态快照） |
 | `/404.html` | 品牌一致的返回页 |
 
 ## 开发
@@ -30,6 +32,8 @@ pnpm dev        # http://localhost:4321
 pnpm check      # astro check
 pnpm build      # 输出 dist/
 pnpm preview
+pnpm sync:atlas      # 从 E:\dsh研究 同步 public/atlas（可用 DSH_ATLAS_SRC 覆盖）
+pnpm test:atlas      # 验证 /atlas/ 静态快照（需先 pnpm build）
 pnpm build:gh-pages  # 生成 GitHub Pages 生产目录 artifacts/gh-pages-prod
 ```
 
@@ -51,6 +55,7 @@ public/
   images/brand/                logo / 图标 / favicon
   images/screens/              真实产品截图
   images/og.png                OG 图
+  atlas/                       插件技术档案静态快照（由 pnpm sync:atlas 生成，勿手改）
 design-demos/                  三方向探索样张（保留作参考）
 docs/                          产品事实 / 品牌规范 / 文案 / 方向 / 验证
 ```
@@ -70,7 +75,8 @@ docs/                          产品事实 / 品牌规范 / 文案 / 方向 / �
 
 ## 内容边界
 
-- 公开页面不出现 `dsh` / `DeepSeek Harness` / `deepseek-harness`；`Cordis` 按约定允许出现。
+- 营销页面不出现 `dsh` / `DeepSeek Harness` / `deepseek-harness`；`Cordis` 按约定允许出现。
+- `/atlas/` 是独立技术档案，允许出现 dsh / DeepSeek Harness / 原始包名与源码术语；默认 `noindex` 并从 `robots.txt` 排除。
 - 不编造下载链接、版本号、客户评价或性能数据。
 - 500 节点 / 101fps 为 2026-10-30 本机开发环境基准，页面已注明口径。
 - 所有截图来自真实产品界面；首屏剖面图是**示意图**，图注明确 `type clusters, not physical positions`。
@@ -84,6 +90,17 @@ docs/                          产品事实 / 品牌规范 / 文案 / 方向 / �
 | OG / canonical | 由 `Astro.site` 生成，已指向正式域名 |
 | 安装包 / Release | 下载页当前只有「预约内测」与「即将开放」，无假下载 |
 | GitHub | 仓库未公开，官网不放置 GitHub 按钮 |
+
+## 插件档案更新
+
+`public/atlas/` 是研究站 `E:\dsh研究` 的静态快照。研究站更新后：
+
+```bash
+pnpm sync:atlas
+pnpm build:gh-pages
+```
+
+同步脚本只复制运行所需文件，并做三件事：复用官网字体、隐藏源码浏览器、把 `#/files` / `#/code` 重定向到 `#/map`。不要直接手改 `public/atlas/`。
 
 ## 验证
 

@@ -121,11 +121,24 @@ pnpm build   # 5 pages: /, /observe/, /download/, /about/, /404.html
 | 下载页平台选择 | 通过；macOS 按钮写入 select |
 | 下载页邮箱校验 | 通过；无效邮箱显示错误，有效邮箱打开 mailto 占位 |
 | 移动端菜单 | 通过；打开/关闭、aria-expanded/aria-hidden 同步 |
-| 内部链接 | `/`, `/observe/`, `/download/`, `/about/`, `/404.html` 全部 200 |
+| 内部链接 | `/`, `/observe/`, `/download/`, `/about/`, `/atlas/`, `/404.html` 全部 200 |
 
-### 公开禁用词
+### 公开禁用词（营销页面）
 
-`dist` 的 HTML/JS/CSS 中 `dsh`、`DeepSeek Harness`、`deepseek-harness` 无匹配；`Cordis` 按约定保留。
+`dist` 的营销 HTML/JS/CSS 中 `dsh`、`DeepSeek Harness`、`deepseek-harness` 无匹配；`Cordis` 按约定保留。`dist/atlas/` 是独立技术档案，按 ADR/内容边界例外处理。
+
+### Atlas 静态档案（2026-11-02）
+
+- `pnpm sync:atlas`：从 `E:\dsh研究` 生成 `public/atlas/`，8 个运行文件 / 2.29 MiB；复用官网字体，不复制研究站 4.7MB 字体。
+- `pnpm check`：0 errors / 0 warnings / 0 hints（`public/atlas` 已在 `tsconfig` 排除）。
+- `pnpm build`：营销 4 页 + 404 + `/atlas/`；`dist` 总计约 9.29MB。
+- `pnpm test:atlas` 16/16：`/atlas/` 加载、`#/pkg-name/%40deepseek-ai%2Fdsh-tool-fs` 解析到 `tool-fs`、源码入口隐藏、`#/code` 重定向 `#/map`、无 `/api/*` 请求、无控制台错误/pageerror、桌面与 390px 移动端无横向溢出、noindex/canonical 正确。
+- 截图：`artifacts/atlas-verify/atlas-home.png`、`atlas-tool-fs.png`、`atlas-tool-fs-mobile.png`。
+- 限制：静态托管没有 `/api/*`，源码浏览器与「读源码 / 行号跳转」不可用；需要源码时运行本地研究站。
+
+### 待部署
+
+- `/atlas/`、官网导航/页脚入口与内容边界更新已在本地构建验证，但尚未推送 GitHub Pages；需执行 `pnpm build:gh-pages` 后把 `artifacts/gh-pages-prod` 推到 Pages 仓库。
 
 ### 最终 caveats
 
