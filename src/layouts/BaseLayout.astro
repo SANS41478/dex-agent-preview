@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { release } from '../data/release'
 
 interface Props {
   title: string
@@ -27,7 +28,9 @@ const jsonLd = schema
       '@type': 'SoftwareApplication',
       name: 'Dex AGENT',
       applicationCategory: 'DeveloperApplication',
-      operatingSystem: 'Windows, macOS, Linux',
+      operatingSystem: 'Windows',
+      softwareVersion: release.version,
+      downloadUrl: release.downloadUrl,
       description,
       url: canonical.toString(),
     })

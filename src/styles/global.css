@@ -331,6 +331,7 @@ body.menu-open .mobile-menu{transform:none}
 .platform-table .pname b{display:block;font-size:14px;font-weight:500;line-height:1.4}
 .platform-table .pname span{display:block;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px}
 .platform-table .preq{font-size:11px;line-height:1.6;color:var(--ink-3)}
+.platform-table .ptag.live{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
 .platform-table .ptag{font-family:var(--mono);font-size:8px;color:var(--warning);border:1px solid color-mix(in srgb,var(--warning) 45%,var(--line));padding:3px 6px;justify-self:start}
 .platform-table .btn{min-height:38px;font-size:10px}
 .dl2-note{display:flex;gap:10px;border:1px solid var(--line-2);background:var(--paper-2);padding:12px 14px;margin-top:18px}
