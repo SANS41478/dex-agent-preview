@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import HeroDiagram from '../components/HeroDiagram.astro'
 import ArchDiagram from '../components/ArchDiagram.astro'
+import TimelinePaper from '../components/TimelinePaper.astro'
+import RewindPath from '../components/RewindPath.astro'
 import CtaBand from '../components/CtaBand.astro'
 ---
 
@@ -94,7 +96,7 @@ import CtaBand from '../components/CtaBand.astro'
   <section class="chapter" id="fig-03">
     <div class="container">
       <div class="chapter-head"><div class="fig">FIG. 03</div><h2>时间不是线性的，是可回退的。</h2><p class="note">时间线 / 回放 / 上下文还原</p></div>
-      <div class="chapter-body">
+      <div class="chapter-body timeline-layout">
         <div class="chapter-text">
           <p class="lead">缓存历史事件，回退到任意 Step 查看当时上下文；支持回放。失败不是终点，是一个可以重新进入的位置。</p>
           <ul class="notes">
@@ -102,22 +104,11 @@ import CtaBand from '../components/CtaBand.astro'
             <li><span class="k">REPLAY</span><span class="v"><b>重新走一遍。</b>时间线与 DAG 共用同一套事件。</span></li>
           </ul>
           <p class="margin-note">回放不是录屏：它重建的是状态，不是像素。</p>
+          <TimelinePaper />
+          <RewindPath />
         </div>
         <div class="chapter-figure">
-          <div class="time-paper">
-            <div class="time-top"><span>RUN 01 / 00:00 — 01:02</span><button class="play-btn" type="button" id="play-timeline">▶ 回放</button></div>
-            <div class="time-track" id="timeline">
-              <div class="base"></div><div class="fill"></div><div class="head"></div>
-              <div class="time-mark" style="left:0%"><b>00:00</b><span>prompt</span></div>
-              <div class="time-mark" style="left:20%"><b>00:12</b><span>step 01</span></div>
-              <div class="time-mark" style="left:40%"><b>00:31</b><span>tool</span></div>
-              <div class="time-mark" style="left:60%"><b>00:48</b><span>failed</span></div>
-              <div class="time-mark" style="left:80%"><b>00:57</b><span>rewind</span></div>
-              <div class="time-mark" style="left:100%"><b>01:02</b><span>done</span></div>
-            </div>
-            <div class="time-foot"><span>playhead <b id="time-read">00:00</b></span><span>events 42</span><span>steps 09</span></div>
-          </div>
-          <figure class="plate" style="margin-top:18px">
+          <figure class="plate">
             <div class="plate-bar"><span>PLATE 03 / TIMELINE</span><span>REAL UI</span></div>
             <img src="/images/screens/timeline-rewind.png" width="1088" height="1291" loading="lazy" alt="时间线：选中第 15 步失败节点，底部详情面板显示工具调用、相关插件与权限策略。" />
             <figcaption><b>fig. 03</b> — timeline / inspect a failed step / tool calls &amp; context</figcaption>
